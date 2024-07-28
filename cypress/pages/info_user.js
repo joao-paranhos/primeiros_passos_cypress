@@ -19,20 +19,26 @@ class PageInfo
                 return Selector}
 
 
-    Pageuserinfo(){
+    Pageuserinfo(firstname,MiddleNameTest,LastNameTest){
 
         cy.get(this.SelectorList().myinfoButton).click()
-        cy.get(this.SelectorList().firstNameField).clear().type('FirstNameTest')
-        cy.get(this.SelectorList().MiddleNameField).clear().type('MiddleNameTest')
-        cy.get(this.SelectorList().LastNameField).clear().type('LastNameTest')
-        cy.get(this.SelectorList().GenericField).eq(3).clear().type('Employee')
-        cy.get(this.SelectorList().GenericField).eq(4).clear().type('OtherIDTest')
-        cy.get(this.SelectorList().GenericField).eq(5).clear().type('Drivers license number')
-        cy.get(this.SelectorList().DateField).eq(1).clear().type('2025-01-01')
+        cy.get(this.SelectorList().firstNameField).clear().type(firstname)
+        cy.get(this.SelectorList().MiddleNameField).clear().type(MiddleNameTest)
+        cy.get(this.SelectorList().LastNameField).clear().type(LastNameTest)}
+        
+    
+    FillEmployeedDetails(EmployeeId,OtherID,Driverslicensenumber,DateField,DateBirth){
+        cy.get(this.SelectorList().GenericField).eq(3).clear().type(EmployeeId)
+        cy.get(this.SelectorList().GenericField).eq(4).clear().type(OtherID)
+        cy.get(this.SelectorList().GenericField).eq(5).clear().type(Driverslicensenumber)
+        cy.get(this.SelectorList().DateField).eq(1).clear().type(DateField)
         cy.get(this.SelectorList().DateCloseButton).eq(0).click()
         cy.get(this.SelectorList().SexField).eq(0).click()
-        cy.get(this.SelectorList().GenericField).eq(8).clear().type('2002-06-11')
-        cy.get(this.SelectorList().DateCloseButton).eq(0).click()
+        cy.get(this.SelectorList().GenericField).eq(8).clear().type(DateBirth)
+        cy.get(this.SelectorList().DateCloseButton).eq(0).click()}
+
+    fillstatus(){
+
         cy.get(this.SelectorList().Dropdown).eq(0).click()
         cy.contains('Brazilian').click()
         cy.get(this.SelectorList().Dropdown).eq(1).click()
@@ -44,12 +50,10 @@ class PageInfo
     
     Checksucess(){
 
-        cy.contains('Successfully Updated').should('be.visible')
-    }
-    }
-
+        cy.contains('Successfully Updated').should('be.visible')}
+}
     export default PageInfo
-    
+
 
 
 
